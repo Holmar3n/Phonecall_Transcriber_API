@@ -1,26 +1,23 @@
-Systemet använder sig utav 2 modeller, en för transkriberingen och en för röstanalys.
-API:et tar emot en filväg och ljudfilerna förbehandlas för att fungera bättre i modellerna.
-Modellerna skapar segment som sedan matchas ihop med hjälp av match_segments() funktionen.
-Med hjälp av identify_roles_by_keywords() funktionen så bestäms vilka roller Talare 1 och Talare 2 får (agent eller customer).
-Sen görs den slutgiltiga listan om till en json fil som sedan skickas tillbaka.
-Finns även ett log system som skapar en logs mapp om den inte redan finns och för varje dag skapas en ny fil där felmeddelanden skrivs in.
+### Introduction
 
-Installationer/modeller:
-Torch
-pyannote.audio
-rapidfuzz
-numpy
-pydub
-whisper  https://github.com/openai/whisper.git
-flask
-noisereduce
+The system uses two models: one for transcription and one for voice analysis. The API accepts a file path, and the audio files are preprocessed to work better with the models. 
+The models create segments that are then matched together using the match_segments() function. With the help of the identify_roles_by_keywords() function, the roles of Speaker 1 and Speaker 2 are determined (e.g., agent or customer). 
+The final list is then converted into a JSON file, which is sent back as the output.
 
-Behörighet:
-Pyannote kräver att man skapar en token på huggingface och accepterar deras villkor.
+### Installations/Models:
+- `torch`
+- `pyannote.audio`
+- `rapidfuzz`
+- `numpy`
+- `pydub`
+- `whisper` [https://github.com/openai/whisper.git](https://github.com/openai/whisper.git)
+- `flask`
+- `noisereduce`
 
-övrigt:
-Skickade med några ljudfiler att testa på. Några är bra medans andra är mindre bra.
-I funktionen identify_roles_by_keywords() behövs sökvägen till keywords_data.json
+### Authorization:
+PyAnnote requires creating a token on Hugging Face and accepting their terms of service.
 
+### Additional Notes:
+Some audio files are included for testing. Some are high quality, while others are lower quality. The `identify_roles_by_keywords()` function requires the path to `keywords_data.json`.
 
-PS Har bara kunnat köra koden på google colabs betalversion då modellerna kräver för mycket prestanda
+*Note*: I've only been able to run the code on Google Colab's paid version due to the high performance requirements of the models.
